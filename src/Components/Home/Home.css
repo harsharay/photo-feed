@@ -1,3 +1,7 @@
+.grey-out {
+    opacity: 50%;
+}
+
 .photos-group {
     /* display: grid;
     grid-template-columns: repeat(5, 1fr);

@@ -40,7 +40,7 @@ const Home = () => {
             .then(data => {
                 setLoading(false)
                 setResults(results.concat(data.response))
-                
+                console.log(43,data.response)
             })
             // fetch("https://jsonplaceholder.typicode.com/photos")
             // .then(data => data.json())
@@ -58,6 +58,10 @@ const Home = () => {
         setCurrentIndex(index)
     }
 
+    const closeModal = () => {
+        setImageClicked(false)
+    }
+
     return (
         <div>
             <div>
@@ -66,7 +70,7 @@ const Home = () => {
                     next = {fetchMoreData}
                     hasMore = {true}
                     loader = {<h4>Loading...</h4>}
-                    className="images-box"
+                    className={"images-box "+ (imageClicked ? "grey-out" : "")}
                 >
                     {/* <Masonry
                         breakpointCols={3}
@@ -85,7 +89,7 @@ const Home = () => {
                             </div>
                     {/* </Masonry> */}
                 </InfiniteScroll>
-                {imageClicked && <Modal results={results} currentImage={currentImage} currentIndex={currentIndex}/>}
+                {imageClicked && <Modal results={results} currentImage={currentImage} currentIndex={currentIndex} closeModal={closeModal}/>}
             </div>
         </div>
     )
