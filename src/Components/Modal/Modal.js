@@ -26,13 +26,14 @@ const Modal = (props) => {
     return (
         <div className="modal-root">
             <div className="modal-content">
-                {/* {JSON.stringify(props.results[currentIndexModal])} */}
-                {/* <p>{props.results[currentIndexModal].alt_description}</p> */}
                 <p onClick={() => props.closeModal()}>Close</p>
-                <img src={props.results[currentIndexModal].urls.regular} alt={props.results[currentIndexModal].alt_description}/>
+                <div className="modal-imageData">
+                    <p>{props.results[currentIndexModal].alt_description}</p>
+                    <img src={props.results[currentIndexModal].urls.small} alt={props.results[currentIndexModal].alt_description}/>
+                </div>
                 <div className="modal-navigation">
                     {currentIndexModal >0 && <button onClick={handleNavigation} name="left">Previous</button>}
-                    {currentIndexModal <= props.results.length && <button onClick={handleNavigation} name="right">Next</button>}
+                    {(currentIndexModal < props.results.length-1) && <button onClick={handleNavigation} name="right">Next</button>}
                 </div>
             </div>
         </div>
