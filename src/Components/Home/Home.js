@@ -70,9 +70,6 @@ const Home = () => {
             setResults(data.response)
             console.log(30,data.response)
         })
-        // fetch("https://jsonplaceholder.typicode.com/photos")
-        // .then(data => data.json())
-        // .then(json => setResults(json))
     }, []);
 
     const fetchMoreData = () => {
@@ -84,12 +81,6 @@ const Home = () => {
                 setResults(results.concat(data.response))
                 console.log(43,data.response)
             })
-            // fetch("https://jsonplaceholder.typicode.com/photos")
-            // .then(data => data.json())
-            // .then(json => {
-            //     setLoading(false)
-            //     setResults(results.concat(json))
-            // })
         }
     }
     
@@ -121,33 +112,26 @@ const Home = () => {
                     loader = {<h4>Loading...</h4>}
                     className={"images-box "+ (imageClicked ? "grey-out" : "")}
                 >
-                    {/* <Masonry
-                        breakpointCols={3}
-                        className="my-masonry-grid"
-                        columnClassName="my-masonry-grid_column"> */}
-                        <Masonry
-                            breakpointCols={breakpointColumnsObj}
-                            className="masonry-grid"
-                            columnClassName="masonry-grid_column"
-                        >
-                            {/* <div className="photos-group"> */}
-                                {results.map((item, index) =>  {
-                                    return (
-                                        <div className="row" key={index} >
-                                            <div className="col-md-12 px-0">
-                                            <div className="rounded-lg overflow-hidden">
-                                                <div onClick={() => handleImageClick(index)}>
-                                                    <img src={item.urls.thumb} alt={item.alt_description} className="single-photo"/>
-                                                {/* <img src={item.url} alt={item.title} className="single-photo"/> */}
-                                                </div>
-                                            </div>
+                    <Masonry
+                        breakpointCols={breakpointColumnsObj}
+                        className="masonry-grid"
+                        columnClassName="masonry-grid_column"
+                    >
+                            {results.map((item, index) =>  {
+                                return (
+                                    <div className="row" key={index} >
+                                        <div className="col-md-12 px-0">
+                                        <div className="rounded-lg overflow-hidden">
+                                            <div onClick={() => handleImageClick(index)}>
+                                                <img src={item.urls.thumb} alt={item.alt_description} className="single-photo"/>
                                             </div>
                                         </div>
-                                        )
-                                    }
-                                )}
-                            {/* </div> */}
-                        </Masonry>
+                                        </div>
+                                    </div>
+                                    )
+                                }
+                            )}
+                    </Masonry>
                 </InfiniteScroll>
                 
                 {imageClicked && <Modal results={results} currentImage={currentImage} currentIndex={currentIndex} closeModal={closeModal}/>}
@@ -155,13 +139,5 @@ const Home = () => {
         </div>
     )
 }
-
-const FakeCard = (item, index,handleImageClick) => (
-    <div key={index} onClick={() => handleImageClick(index)}>
-        {/* <img src={item.urls.regular} alt={item.alt_description} className="single-photo"/> */}
-        {/* {JSON.stringify(item.data.url)} */}
-        <img src={item.data.url} alt={item.data.title} className="single-photo"/>
-    </div>
-)
 
 export default Home;
